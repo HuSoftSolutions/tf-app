@@ -1,0 +1,32 @@
+{
+  "name": "tf-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "serve:base": "           VITE_TEMPLATE=base        vite",
+    "serve:thebunker": "      VITE_TEMPLATE=thebunker   vite",
+    "":"",
+    "build:base:dev": "       VITE_TEMPLATE=base        vite build --mode development      && firebase deploy --only hosting:base-dev         -P teefindr-dev",
+    "build:thebunker:dev": "  VITE_TEMPLATE=thebunker   vite build --mode development      && firebase deploy --only hosting:thebunker-dev    -P teefindr-dev",
+    "build:base:qa": "        VITE_TEMPLATE=base        vite build --mode qa               && firebase deploy --only hosting:base-qa          -P teefindr-qa",
+    "build:thebunker:qa": "   VITE_TEMPLATE=thebunker   vite build --mode qa               && firebase deploy --only hosting:thebunker-qa     -P teefindr-qa",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vueuse/core": "^9.3.0",
+    "@vueuse/motion": "^2.0.0-beta.12",
+    "dotenv": "^16.0.3",
+    "firebase": "^9.11.0",
+    "pinia": "^2.0.22",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.1.0",
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.17",
+    "tailwindcss": "^3.1.8",
+    "vite": "^3.1.0"
+  }
+}

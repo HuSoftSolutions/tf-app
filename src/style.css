@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* font-family: Inter, Avenir, Helvetica, Arial, sans-serif; */
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  @apply h-screen bg-gradient-to-b from-transparent to-secondary-dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.nav_menu {
+  @apply hidden md:flex items-center;
+}
+
+.nav_container a {
+  @apply hover:text-primary;
+}
+
+.nav_menu a {
+  @apply py-5 px-3;
+}
+
+.mbl_nav_menu {
+  @apply md:hidden bg-secondary;
+}
+
+.mbl_nav_menu a {
+  @apply block px-5 py-3;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}

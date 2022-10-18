@@ -1,0 +1,64 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+  
+    // ------------------
+		// Lock Down All Docs
+    
+    match /{document=**} {
+      allow read: if true; // isLogin();
+      allow write, update, delete: if true; // false;
+    }
+    
+    // ------------------
+    // Security Rules
+    
+//     match /bookings/{booking_id} {
+//       allow read, write, update, delete: if isCourseManager() || isOwner();
+//     }
+    
+//     match /course_list/{course_id} {
+//       allow read: if isLogin();
+//     }
+    
+//     match /courses/{course_id} {
+//       allow read, write, update: if isLogin();
+//     }
+    
+//     match /teetimes/{teetime_id} {
+//       allow read, write, update, delete: if isCourseManager() || isOwner();
+//     }
+    
+//     match /users/{user_id} {
+//       allow read: if isOwner() || isManager();
+//       allow write: if isOwner();
+//     }
+    
+//     match /courses/{course_id}/subscribers/{subscriber_id} {
+//     	allow read, update, write, delete: if isLogin() || isCourseManager();
+//     }
+    
+    // ------------------
+		// Helper Functions
+
+		function userExists() {
+    	return  exists(/databases/$(database)/documents/users/$(request.auth.uid));
+		}
+    
+    function isLogin() {
+      return request.auth != null && request.auth.uid != null && userExists();
+    }
+
+    function isOwner() {
+    	return isLogin() && (request.resource.data.user_id == request.auth.uid);
+    }
+
+    function isManager() {
+      return isLogin() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.course_id != null;
+    }
+
+    function isCourseManager() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.course_id == request.resource.data.course_id ||
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.course_id == resource.data.course_id;
+    }
+  }
+}

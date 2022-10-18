@@ -1,0 +1,19 @@
+{
+  "projects": {
+    "default": "teefindr-dev",
+    "teefindr-dev": "teefindr-dev"
+  },
+  "targets": {
+    "teefindr-dev": {
+      "hosting": {
+        "thebunker-dev": [
+          "thebunker-teefindr-dev"
+        ],
+        "base-dev": [
+          "teefindr-vue-dev"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
